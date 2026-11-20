@@ -14,22 +14,34 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
 .visual-balance{background:radial-gradient(ellipse at center,#1d2a3b 0,#101722 72%);border:1px solid #303c4e;border-radius:18px;padding:14px;margin:14px 0 18px}
 .visual-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
 .visual-head strong{font-size:15px}.visual-head span{font-size:11px;color:#9eacbf}
-.car-layout{display:grid;grid-template-columns:minmax(0,1fr) 94px minmax(0,1fr);grid-template-rows:auto 1fr auto;gap:8px;align-items:center;max-width:490px;margin:0 auto}
+.car-layout{display:grid;grid-template-columns:minmax(0,1fr) 148px minmax(0,1fr);grid-template-rows:auto 1fr auto;gap:8px;align-items:center;max-width:490px;margin:0 auto}
 .corner{background:#121d2a;border:1px solid #34445a;border-radius:12px;padding:10px 6px;text-align:center;min-width:0}
 .corner .pos{font-size:10px;color:#9eacbf;text-transform:uppercase;letter-spacing:.04em}
 .corner .grams{font-size:clamp(16px,4.4vw,22px);font-weight:850;line-height:1.3;margin:3px 0}
 .corner .share{font-size:12px;color:#55b6ff;font-weight:750}
 .car-center{grid-column:2;grid-row:1/4;display:flex;flex-direction:column;align-items:center;justify-content:space-between;min-height:265px;gap:8px}
 .axle-label{font-size:11px;color:#9eacbf;text-align:center}
-.car-silhouette{flex:1;width:100%;max-height:250px;min-height:170px}
+.car-silhouette{flex:1;width:100%;max-height:260px;min-height:190px}
 .axle-total{font-size:13px;font-weight:800;color:#f2f6fb;text-align:center}
 .axle-total small{display:block;font-size:11px;color:#55b6ff;font-weight:700}
 .corner.fl{grid-column:1;grid-row:1}.corner.fr{grid-column:3;grid-row:1}.corner.rl{grid-column:1;grid-row:3}.corner.rr{grid-column:3;grid-row:3}
 .balance-footer{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:12px}
 .balance-footer div{background:#111a26;border-radius:10px;padding:9px 5px;text-align:center}
 .balance-footer small{display:block;color:#9eacbf;font-size:10px}.balance-footer b{display:block;font-size:14px;margin-top:3px}
-@media(max-width:360px){.car-layout{grid-template-columns:minmax(0,1fr) 78px minmax(0,1fr);gap:5px}.corner{padding:8px 3px}.corner .pos{font-size:9px}.car-center{min-height:245px}.balance-footer b{font-size:12px}}
+@media(max-width:360px){.car-layout{grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr);gap:5px}.corner{padding:8px 3px}.corner .pos{font-size:9px}.car-center{min-height:245px}.balance-footer b{font-size:12px}}
 
+ 
+.cg-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cg-card{background:#101823;border:1px solid #34445a;border-radius:14px;padding:12px;margin-top:12px}
+.cg-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.cg-kpi{background:#172435;padding:11px;border-radius:11px}
+.cg-kpi small{display:block;color:#a6b5c8;font-size:11px}.cg-kpi strong{display:block;font-size:18px;margin-top:5px}
+.cg-diagram{width:100%;max-width:410px;display:block;margin:10px auto}
+.cg-help{font-size:12px;line-height:1.55;color:#aab9ca}
+.cg-error{color:#ffc27c;font-size:12px;margin-top:8px}
+.cg-fields input,.cg-fields select{width:100%;background:#0c131d;color:#f0f6ff;border:1px solid #39475b;border-radius:10px;padding:11px}
+.cg-fields label{display:block;font-size:12px;color:#aab9ca;margin:0 0 5px}
+@media(max-width:410px){.car-layout{grid-template-columns:minmax(0,1fr) 114px minmax(0,1fr);gap:5px}.corner{padding:8px 3px}.corner .grams{font-size:15px}.corner .pos{font-size:9px}.car-center{min-height:255px}}
 </style>
 </head>
 <body>
@@ -72,19 +84,34 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
     <div class="car-center">
      <div class="axle-label">VORNE</div>
      <div class="axle-total" id="vizfront">—<small id="vizfrontpct">—</small></div>
-     <svg class="car-silhouette" viewBox="0 0 100 250" role="img" aria-label="Fahrzeug-Draufsicht">
-      <defs><linearGradient id="bodyGrad" x1="0" x2="1"><stop offset="0" stop-color="#26364a"/><stop offset=".5" stop-color="#40516a"/><stop offset="1" stop-color="#26364a"/></linearGradient></defs>
-      <path d="M29 14 Q50 2 71 14 L78 35 L76 65 L70 83 L70 163 L77 183 L77 216 L68 237 L32 237 L23 216 L23 183 L30 163 L30 83 L24 65 L22 35 Z" fill="url(#bodyGrad)" stroke="#7d93ad" stroke-width="1.5"/>
-      <path d="M34 28 Q50 20 66 28 L69 51 L31 51 Z" fill="#111a26" stroke="#7289a4"/>
-      <path d="M31 58 L69 58 L66 78 L34 78 Z" fill="#172332" stroke="#536980"/>
-      <path d="M34 88 L66 88 L66 154 L34 154 Z" fill="#202e40" stroke="#60758f"/>
-      <path d="M31 168 L69 168 L72 186 L28 186 Z" fill="#172332" stroke="#536980"/>
-      <path d="M35 196 L65 196 L68 218 L32 218 Z" fill="#111a26" stroke="#7289a4"/>
-      <rect x="4" y="36" width="19" height="40" rx="5" fill="#68788c" stroke="#b5c4d5"/><rect x="77" y="36" width="19" height="40" rx="5" fill="#68788c" stroke="#b5c4d5"/>
-      <rect x="4" y="178" width="19" height="40" rx="5" fill="#68788c" stroke="#b5c4d5"/><rect x="77" y="178" width="19" height="40" rx="5" fill="#68788c" stroke="#b5c4d5"/>
-      <path d="M27 56 L73 56 M27 198 L73 198" stroke="#55b6ff" stroke-width="3" stroke-linecap="round"/>
-      <path d="M50 5 L50 0 M46 5 L50 0 L54 5" stroke="#62e69a" stroke-width="1.5" fill="none"/>
-     </svg>
+     <svg class="car-silhouette" viewBox="0 0 180 270" role="img" aria-label="Breiter Rock Crawler in Draufsicht mit vier Stollenreifen">
+<defs>
+ <linearGradient id="crawlerPaint" x1="0" x2="1"><stop stop-color="#1b3347"/><stop offset=".48" stop-color="#47627a"/><stop offset="1" stop-color="#172c40"/></linearGradient>
+ <pattern id="tread" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#141b22"/><path d="M0 2 L8 5 L14 2 M0 10 L8 13 L14 10" fill="none" stroke="#62717a" stroke-width="4"/></pattern>
+</defs>
+<!-- Wide solid axles, shocks and crawler chassis -->
+<path d="M22 60 H158 M22 210 H158" stroke="#8aa6b6" stroke-width="7"/>
+<path d="M45 55 L67 86 M135 55 L113 86 M45 215 L67 185 M135 215 L113 185" stroke="#e6a55a" stroke-width="5"/>
+<rect x="62" y="38" width="56" height="194" rx="14" fill="#0d1720" stroke="#7c95a5" stroke-width="3"/>
+<rect x="77" y="47" width="26" height="176" rx="7" fill="#273f4c" stroke="#6f8b9c"/>
+<!-- Knobby off-road tires -->
+<rect x="4" y="31" width="38" height="65" rx="10" fill="url(#tread)" stroke="#8797a3" stroke-width="2.5"/>
+<rect x="138" y="31" width="38" height="65" rx="10" fill="url(#tread)" stroke="#8797a3" stroke-width="2.5"/>
+<rect x="4" y="177" width="38" height="65" rx="10" fill="url(#tread)" stroke="#8797a3" stroke-width="2.5"/>
+<rect x="138" y="177" width="38" height="65" rx="10" fill="url(#tread)" stroke="#8797a3" stroke-width="2.5"/>
+<g fill="#101820" stroke="#a6b7c2" stroke-width="2"><circle cx="23" cy="63" r="11"/><circle cx="157" cy="63" r="11"/><circle cx="23" cy="209" r="11"/><circle cx="157" cy="209" r="11"/></g>
+<g fill="#647c8c"><circle cx="23" cy="63" r="4"/><circle cx="157" cy="63" r="4"/><circle cx="23" cy="209" r="4"/><circle cx="157" cy="209" r="4"/></g>
+<!-- Jeep-inspired body, bonnet, cab, rear cargo bed -->
+<path d="M56 15 L124 15 L133 38 L129 93 L123 105 L123 164 L132 180 L131 249 L49 249 L48 180 L57 164 L57 105 L51 93 L47 38 Z" fill="url(#crawlerPaint)" stroke="#a3bac8" stroke-width="2.5"/>
+<path d="M55 36 H125 L121 86 H59 Z" fill="#20394b" stroke="#7898aa" stroke-width="2"/>
+<path d="M58 43 H122 M58 51 H122 M58 59 H122" stroke="#5f849a" stroke-width="2"/>
+<path d="M57 101 L67 91 H113 L123 101 L120 158 H60 Z" fill="#101c28" stroke="#90a5b3" stroke-width="2"/>
+<path d="M65 109 H115 L112 147 H68 Z" fill="#34516a" stroke="#a4bfce" stroke-width="1.5"/>
+<path d="M56 171 H124 L128 239 H52 Z" fill="#152532" stroke="#a1b6c4" stroke-width="2"/>
+<path d="M62 180 H118 V229 H62 Z" fill="none" stroke="#587588" stroke-width="2"/>
+<path d="M49 25 H131 M48 242 H132" stroke="#d5e1e9" stroke-width="5" stroke-linecap="round"/>
+<path d="M90 5 V0 M85 7 L90 0 L95 7" stroke="#67e6a6" stroke-width="2" fill="none"/>
+</svg>
      <div class="axle-total" id="vizrear">—<small id="vizrearpct">—</small></div>
      <div class="axle-label">HINTEN</div>
     </div>
@@ -124,6 +151,49 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
    <div class="note" id="diagNote">Die beiden Diagonalen zusammen ergeben 100 %. Bei 50/50 sind sie gleich schwer; das ist eine statische Messung und keine direkte Messung des Torquetwists.</div>
   </div>
  </section>
+<section class="panel" id="cgPanel">
+ <div class="sectionhead"><h2>🎯 Schwerpunkt-Rechner</h2><span class="pill">NEU · V1.2</span></div>
+ <p class="note">Nach dem Prinzip der statischen Achslastmessung: Längs- und Seitenlage werden aus deinen vier Radlasten berechnet. Für die Höhe ist eine zweite Messung mit angehobener Achse nötig.</p>
+ <div class="cg-fields">
+  <div><label for="cgWheelbase">Radstand L (mm)</label><input id="cgWheelbase" type="number" min="1" step="0.1" placeholder="z. B. 325"></div>
+  <div><label for="cgTrack">Spurweite T (mm, Radmitte–Radmitte)</label><input id="cgTrack" type="number" min="1" step="0.1" placeholder="z. B. 245"></div>
+ </div>
+ <div class="cg-card">
+  <strong>Schwerpunkt in der Draufsicht</strong>
+  <svg class="cg-diagram" id="cgDiagram" viewBox="0 0 340 270" role="img" aria-label="Schematische Schwerpunktposition zwischen vier Rädern">
+   <rect x="65" y="30" width="210" height="205" rx="15" fill="#152433" stroke="#718ca3" stroke-width="2"/>
+   <path d="M65 132 H275 M170 30 V235" stroke="#4d6277" stroke-dasharray="5 6" stroke-width="1.5"/>
+   <g fill="#303e4b" stroke="#a8bccb" stroke-width="2"><rect x="45" y="42" width="40" height="44" rx="8"/><rect x="255" y="42" width="40" height="44" rx="8"/><rect x="45" y="179" width="40" height="44" rx="8"/><rect x="255" y="179" width="40" height="44" rx="8"/></g>
+   <circle id="cgDot" cx="170" cy="132.5" r="9" fill="#ffb45d" stroke="#fff0cc" stroke-width="2"/>
+   <path id="cgCross" d="M155 132.5 H185 M170 117.5 V147.5" stroke="#ffb45d" stroke-width="2"/>
+   <text x="170" y="17" text-anchor="middle" font-size="12" fill="#b5c6d5">VORNE</text>
+   <text x="170" y="258" text-anchor="middle" font-size="12" fill="#b5c6d5">HINTEN</text>
+  </svg>
+  <div class="cg-kpis">
+   <div class="cg-kpi"><small>Abstand ab Vorderachse</small><strong id="cgFromFront">—</strong></div>
+   <div class="cg-kpi"><small>Abstand ab Hinterachse</small><strong id="cgFromRear">—</strong></div>
+   <div class="cg-kpi"><small>Abstand ab linker Radmitte</small><strong id="cgFromLeft">—</strong></div>
+   <div class="cg-kpi"><small>Abstand ab rechter Radmitte</small><strong id="cgFromRight">—</strong></div>
+  </div>
+  <p class="cg-help" id="cgOffset">Trage Radstand, Spurweite und vier Radlasten ein.</p>
+ </div>
+ <div class="cg-card">
+  <strong>Schwerpunktshöhe messen</strong>
+  <p class="cg-help">1. Fahrzeug fahrfertig auf ebener Fläche wiegen. 2. Eine Achse um die angegebene Höhe anheben (Radmittelpunkt-Höhendifferenz). 3. Die <b>am Boden verbliebene Achse</b> erneut wiegen. 4. Fahrzeug gegen Wegrollen sichern, Federung und Messbedingungen möglichst konstant halten.</p>
+  <div class="cg-fields">
+   <div><label for="cgRaised">Angehobene Achse</label><select id="cgRaised"><option value="front">Vorderachse</option><option value="rear">Hinterachse</option></select></div>
+   <div><label for="cgLift">Höhendifferenz H (mm)</label><input id="cgLift" type="number" min="0" step="0.1" placeholder="z. B. 70"></div>
+   <div><label for="cgRadius">Reifenradius r (mm)</label><input id="cgRadius" type="number" min="0" step="0.1" placeholder="z. B. 60"></div>
+   <div><label for="cgGround">Radlast der Bodenachse, angehoben (g)</label><input id="cgGround" type="number" min="0" step="0.1" placeholder="Summe beider Räder"></div>
+  </div>
+  <div class="cg-kpis">
+   <div class="cg-kpi"><small>Schwerpunktshöhe über Boden</small><strong id="cgHeight">—</strong></div>
+   <div class="cg-kpi"><small>Neigungswinkel</small><strong id="cgAngle">—</strong></div>
+  </div>
+  <p class="cg-error" id="cgWarning"></p>
+  <p class="cg-help">Näherungswert: Fahrwerksbewegung, Reifenverformung und kleine Messdifferenzen können das Ergebnis deutlich beeinflussen. Keine Aussage über dynamischen Torquetwist.</p>
+ </div>
+</section>
 </div>
 <div id="historyView" class="hidden">
  <section class="panel"><div class="sectionhead"><h2>Messverlauf</h2><button class="secondary small" id="compareBtn">Letzte 2 vergleichen</button></div>
@@ -133,7 +203,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   <div id="historyList"></div>
  </section>
 </div>
-<footer class="note" style="padding:8px 4px">Prototyp 1.1 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
+<footer class="note" style="padding:8px 4px">Version 1.2 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
 </div>
 <input type="file" id="importFile" accept="application/json,.json" class="hidden">
 <div id="modalRoot"></div><div id="toast" class="toast hidden"></div>
@@ -179,7 +249,7 @@ function renderVisual(c){
  $('vizleft').textContent=pct(c.share(c.left));
  $('vizright').textContent=pct(c.share(c.right));
 }
-function renderResults(){let c=calc(values());renderVisual(c);const ids=['total','front','rear','lr','frontg','rearg','lrg','frontpct','rearpct','leftpct','rightpct','vfl','vfr','vrl','vrr','pfl','pfr','prl','prr','diffLR','diffLRp','diffFB','diffFBp','diagA','diagAg','diagB','diagBg','diagShare','diagNote'];if(!c){ids.forEach(id=>$(id).textContent='—');['frontbar','rearbar','leftbar','rightbar'].forEach(id=>$(id).style.width='0');return}
+function renderResults(){let c=calc(values());renderVisual(c);cgRender();const ids=['total','front','rear','lr','frontg','rearg','lrg','frontpct','rearpct','leftpct','rightpct','vfl','vfr','vrl','vrr','pfl','pfr','prl','prr','diffLR','diffLRp','diffFB','diffFBp','diagA','diagAg','diagB','diagBg','diagShare','diagNote'];if(!c){ids.forEach(id=>$(id).textContent='—');['frontbar','rearbar','leftbar','rightbar'].forEach(id=>$(id).style.width='0');return}
 $('total').textContent=fmt(c.total)+' g';$('front').textContent=pct(c.share(c.front));$('rear').textContent=pct(c.share(c.rear));$('lr').textContent=pct(c.share(c.left))+' / '+pct(c.share(c.right));$('frontg').textContent=fmt(c.front)+' g';$('rearg').textContent=fmt(c.rear)+' g';$('lrg').textContent=fmt(c.left)+' g links · '+fmt(c.right)+' g rechts';
 [['front',c.front],['rear',c.rear],['left',c.left],['right',c.right]].forEach(([k,n])=>{$(k+'bar').style.width=c.share(n)+'%';$(k+'pct').textContent=pct(c.share(n))});
 [['fl',c.fl],['fr',c.fr],['rl',c.rl],['rr',c.rr]].forEach(([k,n])=>{$('v'+k).textContent=fmt(n)+' g';$('p'+k).textContent=pct(c.share(n))+' vom Gesamtgewicht'});
@@ -190,7 +260,7 @@ const diagA=c.fl+c.rr,diagB=c.fr+c.rl,diagPct=c.share(diagA);$('diagA').textCont
 function renderGarage(){const el=$('garage');if(!el)return;el.innerHTML='';if(!db.vehicles.length){el.innerHTML='<div class="empty">Deine Garage ist noch leer.<br>Lege dein erstes Fahrzeug an.</div>';return}
 db.vehicles.forEach(v=>{let last=v.measurements?.[v.measurements.length-1],c=last?calc([last.fl,last.fr,last.rl,last.rr]):null;let d=document.createElement('div');d.className='vehicle'+(v.id===activeId?' active':'');const photo=v.photo?`<img class="vehicle-photo" src="${v.photo}" alt="Foto von ${esc(v.name)}">`:'<div class="vehicle-photo" style="display:grid;place-items:center;font-size:30px">🚙</div>';d.innerHTML=`<div class="vehicle-top">${photo}<div><h3>${esc(v.name)}</h3><div class="meta">${esc(v.model||'RC-Fahrzeug')}</div><div class="meta">${v.measurements.length} Messung(en)</div></div></div><div style="font-size:20px;font-weight:850">${c?fmt(c.total)+' g':'Noch keine Messung'}</div><div class="meta">${c?'Vorne '+pct(c.share(c.front))+' · Links '+pct(c.share(c.left)):'Radlasten noch nicht erfasst'}</div><div class="actions"><button class="small" data-open="${v.id}">${v.id===activeId?'Ausgewählt':'Öffnen'}</button><button class="secondary small" data-edit="${v.id}">Bearbeiten</button></div>`;el.appendChild(d)});el.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>selectVehicle(b.dataset.open));el.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>vehicleModal(b.dataset.edit))}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function selectVehicle(id){activeId=id;let v=active();$('activeName').textContent=v?.name||'Noch kein Fahrzeug';if(v){let last=v.measurements.at(-1);if(last){['fl','fr','rl','rr'].forEach((k,i)=>$(k).value=last[k]);$('note').value=''}else clearInputs(false)}renderGarage();renderResults();renderHistory()}
+function selectVehicle(id){activeId=id;cgLoad();let v=active();$('activeName').textContent=v?.name||'Noch kein Fahrzeug';if(v){let last=v.measurements.at(-1);if(last){['fl','fr','rl','rr'].forEach((k,i)=>$(k).value=last[k]);$('note').value=''}else clearInputs(false)}renderGarage();renderResults();renderHistory()}
 function clearInputs(clearNote=true){['fl','fr','rl','rr'].forEach(k=>$(k).value='');if(clearNote)$('note').value='';renderResults()}
 function vehicleModal(id=null){let v=id?db.vehicles.find(x=>x.id===id):null;let chosenPhoto=v?.photo||'',removePhoto=false;$('modalRoot').innerHTML=`<div class="modalback"><div class="modal"><h2>${v?'Fahrzeug bearbeiten':'Neues Fahrzeug'}</h2><div class="field"><label for="vname">Fahrzeugname *</label><input id="vname" maxlength="60" placeholder="z. B. SCX10 III Gladiator" value="${esc(v?.name||'')}"></div><div class="field"><label for="vmodel">Modell / Notiz (optional)</label><input id="vmodel" maxlength="100" placeholder="z. B. Axial, 3,8 kg" value="${esc(v?.model||'')}"></div><div class="field"><label for="vphoto">Fahrzeugfoto (optional)</label><input id="vphoto" type="file" accept="image/*"><div class="photo-preview" id="photoPreview">${chosenPhoto?`<img src="${chosenPhoto}" alt="Fahrzeugfoto"><span class="note">Aktuelles Foto</span>`:'<span class="note">Noch kein Foto ausgewählt.</span>'}</div>${chosenPhoto?'<button type="button" class="secondary small" id="removePhoto" style="margin-top:8px">Foto entfernen</button>':''}</div><div class="btnrow"><button id="modalSave">Speichern</button><button class="secondary" id="modalCancel">Abbrechen</button>${v?'<button class="danger" id="modalDelete">Fahrzeug löschen</button>':''}</div><p class="note">Fotos werden verkleinert auf diesem Gerät gespeichert und sind auch im Backup enthalten. Beim Löschen werden auch alle zugehörigen Messungen entfernt.</p></div></div>`;
 $('modalCancel').onclick=()=>$('modalRoot').innerHTML='';
@@ -211,9 +281,44 @@ function drawChart(ms){let canvas=$('chart'),wrap=$('chartWrap'),ctx=canvas.getC
 $('compareBtn').onclick=()=>{let v=active(),ms=v?.measurements||[];if(ms.length<2){toast('Mindestens zwei Messungen speichern.');return}let a=ms[ms.length-2],b=ms[ms.length-1],ca=calc([a.fl,a.fr,a.rl,a.rr]),cb=calc([b.fl,b.fr,b.rl,b.rr]);let html=`<div class="panel" style="margin:0 0 12px;background:#101823"><strong>Vergleich der letzten beiden Messungen</strong><div class="historydetails"><div class="mini">Gesamtgewicht<b>${fmt(ca.total)} → ${fmt(cb.total)} g</b></div><div class="mini">Vorne<b>${pct(ca.share(ca.front))} → ${pct(cb.share(cb.front))}</b></div><div class="mini">Links<b>${pct(ca.share(ca.left))} → ${pct(cb.share(cb.left))}</b></div><div class="mini">VL + HR<b>${pct(ca.share(ca.fl+ca.rr))} → ${pct(cb.share(cb.fl+cb.rr))}</b></div><div class="mini">VR + HL<b>${pct(ca.share(ca.fr+ca.rl))} → ${pct(cb.share(cb.fr+cb.rl))}</b></div></div><div class="note" style="margin-top:8px">Änderung Gesamtgewicht: ${(cb.total-ca.total>=0?'+':'')+fmt(cb.total-ca.total)} g · Vorne: ${(cb.share(cb.front)-ca.share(ca.front)>=0?'+':'')+fmt(cb.share(cb.front)-ca.share(ca.front))} Prozentpunkte · Links: ${(cb.share(cb.left)-ca.share(ca.left)>=0?'+':'')+fmt(cb.share(cb.left)-ca.share(ca.left))} Prozentpunkte</div></div>`;$('comparison').innerHTML=html;$('comparison').classList.remove('hidden')};
 function toast(msg){$('toast').textContent=msg;$('toast').classList.remove('hidden');setTimeout(()=>$('toast').classList.add('hidden'),2500)}
 $('addVehicle').onclick=()=>vehicleModal();$('saveMeasurement').onclick=saveMeasurement;$('clearInputs').onclick=()=>clearInputs();['fl','fr','rl','rr'].forEach(k=>$(k).addEventListener('input',renderResults));$('tabMeasure').onclick=()=>setTab('measure');$('tabHistory').onclick=()=>setTab('history');
-$('backupBtn').onclick=()=>{let choice=prompt('Backup: E = Exportieren, I = Importieren','E');if(!choice)return;if(choice.toUpperCase()==='E'){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='rc-balance-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(url);toast('Backup exportiert.')}else if(choice.toUpperCase()==='I')$('importFile').click()};
-$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let incoming=JSON.parse(await f.text());if(!Array.isArray(incoming.vehicles))throw Error();if(confirm('Backup importieren und aktuelle Garage ersetzen?')){db=incoming;activeId=db.vehicles[0]?.id||null;persist();if(activeId)selectVehicle(activeId);renderHistory();toast('Backup importiert.')}}catch(err){toast('Die Datei ist kein gültiges RC-Balance-Backup.')}e.target.value=''};
+$('backupBtn').onclick=()=>{let choice=prompt('Backup: E = Exportieren, I = Importieren','E');if(!choice)return;if(choice.toUpperCase()==='E'){let blob=new Blob([JSON.stringify({...db,cgSettings:cgStore},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='rc-balance-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(url);toast('Backup exportiert.')}else if(choice.toUpperCase()==='I')$('importFile').click()};
+$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let incoming=JSON.parse(await f.text());if(!Array.isArray(incoming.vehicles))throw Error();if(confirm('Backup importieren und aktuelle Garage ersetzen?')){db=incoming;cgStore=incoming.cgSettings||{};localStorage.setItem(CGKEY,JSON.stringify(cgStore));activeId=db.vehicles[0]?.id||null;cgLoad();persist();if(activeId)selectVehicle(activeId);renderHistory();toast('Backup importiert.')}}catch(err){toast('Die Datei ist kein gültiges RC-Balance-Backup.')}e.target.value=''};
+
+const CGKEY='rcbalance_cg_v12';
+let cgStore={};
+try{cgStore=JSON.parse(localStorage.getItem(CGKEY)||'{}')||{}}catch(e){cgStore={}}
+const cgIds=['cgWheelbase','cgTrack','cgRaised','cgLift','cgRadius','cgGround'];
+function cgVehicle(){return activeId ? (cgStore[activeId]||{}) : {}}
+function cgLoad(){const v=cgVehicle();cgIds.forEach(k=>{const el=$(k);if(el)el.value=v[k]??(k==='cgRaised'?'front':'')});cgRender()}
+function cgSave(){if(!activeId)return;const v={};cgIds.forEach(k=>v[k]=$(k).value);cgStore[activeId]=v;try{localStorage.setItem(CGKEY,JSON.stringify(cgStore))}catch(e){toast('Schwerpunkt-Einstellungen konnten nicht gespeichert werden.')}cgRender()}
+function cgRender(){
+ const c=calc(values()), v=cgVehicle(), L=Number($('cgWheelbase').value), T=Number($('cgTrack').value);
+ const valid=!!c&&Number.isFinite(L)&&L>0&&Number.isFinite(T)&&T>0;
+ const ids=['cgFromFront','cgFromRear','cgFromLeft','cgFromRight','cgHeight','cgAngle'];
+ if(!valid){ids.forEach(id=>$(id).textContent='—');$('cgOffset').textContent='Bitte gültige Radlasten, Radstand und Spurweite eingeben.';$('cgDot').setAttribute('opacity','.3');$('cgCross').setAttribute('opacity','.3');$('cgWarning').textContent='';return}
+ // x measured from left, y from front; positive lateral offset means right.
+ const frontDist=L*c.rear/c.total,rearDist=L*c.front/c.total;
+ const leftDist=T*c.right/c.total,rightDist=T*c.left/c.total;
+ [['cgFromFront',frontDist],['cgFromRear',rearDist],['cgFromLeft',leftDist],['cgFromRight',rightDist]].forEach(([id,val])=>$(id).textContent=fmt(val)+' mm');
+ const lateral=leftDist-T/2, longitudinal=frontDist-L/2;
+ $('cgOffset').textContent='Längsversatz zur Fahrzeugmitte: '+fmt(Math.abs(longitudinal))+' mm '+(Math.abs(longitudinal)<.05?'(mittig)':longitudinal<0?'nach vorne':'nach hinten')+'. Seitlicher Versatz: '+fmt(Math.abs(lateral))+' mm '+(Math.abs(lateral)<.05?'(mittig)':lateral<0?'nach links':'nach rechts')+'.';
+ const x=65+210*leftDist/T, y=64+137*frontDist/L;
+ $('cgDot').setAttribute('cx',x);$('cgDot').setAttribute('cy',y);$('cgDot').setAttribute('opacity','1');
+ $('cgCross').setAttribute('d',`M${x-15} ${y} H${x+15} M${x} ${y-15} V${y+15}`);$('cgCross').setAttribute('opacity','1');
+ const H=Number($('cgLift').value),r=Number($('cgRadius').value),ground=Number($('cgGround').value);
+ $('cgHeight').textContent='—';$('cgAngle').textContent='—';$('cgWarning').textContent='';
+ if(!$('cgLift').value||!$('cgRadius').value||!$('cgGround').value)return;
+ if(!Number.isFinite(H)||H<=0||H>=L||!Number.isFinite(r)||r<0||!Number.isFinite(ground)||ground<0||ground>c.total){$('cgWarning').textContent='Ungültige Eingaben: 0 < H < Radstand, Radius ≥ 0 und Bodenachslast zwischen 0 und Gesamtgewicht.';return}
+ const theta=Math.asin(H/L),groundFlat=$('cgRaised').value==='front'?c.rear:c.front;
+ const height=r+(ground-groundFlat)/c.total*L/Math.tan(theta);
+ $('cgAngle').textContent=fmt(theta*180/Math.PI)+'°';
+ if(!Number.isFinite(height)||height<0){$('cgWarning').textContent='Unplausible Schwerpunktshöhe. Prüfe die gewählte Achse und die Radlastmessung.';return}
+ $('cgHeight').textContent=fmt(height)+' mm';
+ if(height>2*T||height>2*L)$('cgWarning').textContent='Sehr hoher Wert: bitte Hubhöhe, Achslast und Einheiten kontrollieren.';
+}
+cgIds.forEach(id=>$(id).addEventListener('input',cgSave));
+
 window.addEventListener('resize',()=>{if(currentTab==='history')renderHistory()});
-load();activeId=db.vehicles[0]?.id||null;renderGarage();if(activeId)selectVehicle(activeId);else{$('activeName').textContent='Noch kein Fahrzeug';renderResults()}renderHistory();
+load();activeId=db.vehicles[0]?.id||null;cgLoad();renderGarage();if(activeId)selectVehicle(activeId);else{$('activeName').textContent='Noch kein Fahrzeug';renderResults()}renderHistory();
 </script>
 </body></html>
