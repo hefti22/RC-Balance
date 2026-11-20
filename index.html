@@ -234,7 +234,8 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   <div id="historyList"></div>
  </section>
 </div>
-<div id="storageStatus" class="note" role="status" aria-live="polite" style="padding:10px;border:1px solid #35485b;border-radius:10px;margin:10px 4px">Speicher wird geprüft …</div>\n<footer class="note" style="padding:8px 4px">Version 1.2.2 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
+<div id="storageStatus" class="note" role="status" aria-live="polite" style="padding:10px;border:1px solid #35485b;border-radius:10px;margin:10px 4px">Speicher wird geprüft …</div>
+<footer class="note" style="padding:8px 4px">Version 1.2.3 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
 </div>
 <input type="file" id="importFile" accept="application/json,.json" class="hidden">
 <div id="modalRoot"></div><div id="toast" class="toast hidden"></div>
@@ -326,7 +327,7 @@ async function initializeStorage(){
  if(activeId)selectVehicle(activeId);
  else{$('activeName').textContent='Noch kein Fahrzeug';renderResults()}
  renderHistory();
- storageMessage('✓ Lokaler Speicher bereit. Fahrzeuge und Messungen bleiben auf diesem Gerät.');
+ storageMessage('✓ App gestartet. Bitte Speicherung mit Testfahrzeug und Neustart prüfen.');
  if(!idbData&&db.vehicles.length)persist();
 }
 function active(){return db.vehicles.find(v=>v.id===activeId)||null}
