@@ -152,7 +152,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   </div>
  </section>
 <section class="panel" id="cgPanel">
- <div class="sectionhead"><h2>🎯 Schwerpunkt-Rechner</h2><span class="pill">NEU · V1.2</span></div>
+ <div class="sectionhead"><h2>🎯 Schwerpunkt-Rechner</h2><span class="pill">UPDATE · V1.2.1</span></div>
  <p class="note">Nach dem Prinzip der statischen Achslastmessung: Längs- und Seitenlage werden aus deinen vier Radlasten berechnet. Für die Höhe ist eine zweite Messung mit angehobener Achse nötig.</p>
  <div class="cg-fields">
   <div><label for="cgWheelbase">Radstand L (mm)</label><input id="cgWheelbase" type="number" min="1" step="0.1" placeholder="z. B. 325"></div>
@@ -160,15 +160,34 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
  </div>
  <div class="cg-card">
   <strong>Schwerpunkt in der Draufsicht</strong>
-  <svg class="cg-diagram" id="cgDiagram" viewBox="0 0 340 270" role="img" aria-label="Schematische Schwerpunktposition zwischen vier Rädern">
-   <rect x="65" y="30" width="210" height="205" rx="15" fill="#152433" stroke="#718ca3" stroke-width="2"/>
-   <path d="M65 132 H275 M170 30 V235" stroke="#4d6277" stroke-dasharray="5 6" stroke-width="1.5"/>
-   <g fill="#303e4b" stroke="#a8bccb" stroke-width="2"><rect x="45" y="42" width="40" height="44" rx="8"/><rect x="255" y="42" width="40" height="44" rx="8"/><rect x="45" y="179" width="40" height="44" rx="8"/><rect x="255" y="179" width="40" height="44" rx="8"/></g>
-   <circle id="cgDot" cx="170" cy="132.5" r="9" fill="#ffb45d" stroke="#fff0cc" stroke-width="2"/>
-   <path id="cgCross" d="M155 132.5 H185 M170 117.5 V147.5" stroke="#ffb45d" stroke-width="2"/>
-   <text x="170" y="17" text-anchor="middle" font-size="12" fill="#b5c6d5">VORNE</text>
-   <text x="170" y="258" text-anchor="middle" font-size="12" fill="#b5c6d5">HINTEN</text>
+  <svg class="cg-diagram" id="cgDiagram" viewBox="0 0 340 340" role="img" aria-label="Rock Crawler von oben mit angezeigtem Schwerpunkt">
+    <defs>
+      <pattern id="cgTread" width="12" height="14" patternUnits="userSpaceOnUse"><rect width="12" height="14" fill="#111a23"/><path d="M-2 2L8 6L14 2M-2 10L8 14L14 10" stroke="#70818d" stroke-width="4" fill="none"/></pattern>
+      <linearGradient id="cgBody" x1="0" x2="1"><stop stop-color="#21384c"/><stop offset=".5" stop-color="#5b788e"/><stop offset="1" stop-color="#1a3043"/></linearGradient>
+    </defs>
+    <text x="170" y="16" text-anchor="middle" font-size="12" fill="#9cdeba">▲ VORNE</text>
+    <g stroke="#7c99a9" stroke-width="6"><path d="M65 79H275M65 259H275"/></g>
+    <g stroke="#d6a76b" stroke-width="4"><path d="M96 79L133 115M244 79L207 115M96 259L133 223M244 259L207 223"/></g>
+    <g fill="url(#cgTread)" stroke="#99a9b3" stroke-width="2.5">
+      <rect x="39" y="45" width="52" height="68" rx="10"/><rect x="249" y="45" width="52" height="68" rx="10"/>
+      <rect x="39" y="225" width="52" height="68" rx="10"/><rect x="249" y="225" width="52" height="68" rx="10"/>
+    </g>
+    <g fill="#121c25" stroke="#d1dbe2" stroke-width="2"><circle cx="65" cy="79" r="14"/><circle cx="275" cy="79" r="14"/><circle cx="65" cy="259" r="14"/><circle cx="275" cy="259" r="14"/></g>
+    <path d="M121 28H219L231 61L225 129L216 141V205L231 224L228 309H112L109 224L124 205V141L115 129L109 61Z" fill="url(#cgBody)" stroke="#b3c7d3" stroke-width="3"/>
+    <path d="M122 61H218L213 119H127Z" fill="#203b4c" stroke="#779bae" stroke-width="2"/>
+    <path d="M126 69H214M126 81H214M126 93H214" stroke="#557c92" stroke-width="3"/>
+    <path d="M123 145L139 130H201L217 145L212 202H128Z" fill="#102332" stroke="#a5c2d3" stroke-width="2"/>
+    <path d="M139 148H201L197 192H143Z" fill="#385a70" stroke="#89aebf"/>
+    <rect x="122" y="226" width="96" height="70" rx="4" fill="#172a39" stroke="#93aebb" stroke-width="2"/>
+    <rect x="131" y="236" width="78" height="49" fill="none" stroke="#58768a" stroke-width="2"/>
+    <path d="M110 41H230M109 301H231" stroke="#d2e1e9" stroke-width="5" stroke-linecap="round"/>
+    <path d="M170 79V259M65 169H275" stroke="#b0c9d9" stroke-width="1.5" stroke-dasharray="6 6" opacity=".6"/>
+    <circle id="cgDotHalo" cx="170" cy="169" r="19" fill="#ffba66" opacity=".2"/>
+    <circle id="cgDot" cx="170" cy="169" r="9" fill="#ffba66" stroke="#fff" stroke-width="2.5"/>
+    <path id="cgCross" d="M150 169H190M170 149V189" stroke="#ffba66" stroke-width="3"/>
+    <text x="170" y="332" text-anchor="middle" font-size="12" fill="#a9bed0">HINTEN</text>
   </svg>
+  <p class="cg-help" style="text-align:center">🟠 Orange Markierung = berechneter Schwerpunkt (Draufsicht)</p>
   <div class="cg-kpis">
    <div class="cg-kpi"><small>Abstand ab Vorderachse</small><strong id="cgFromFront">—</strong></div>
    <div class="cg-kpi"><small>Abstand ab Hinterachse</small><strong id="cgFromRear">—</strong></div>
@@ -203,7 +222,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   <div id="historyList"></div>
  </section>
 </div>
-<footer class="note" style="padding:8px 4px">Version 1.2 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
+<footer class="note" style="padding:8px 4px">Version 1.2.1 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
 </div>
 <input type="file" id="importFile" accept="application/json,.json" class="hidden">
 <div id="modalRoot"></div><div id="toast" class="toast hidden"></div>
@@ -295,15 +314,15 @@ function cgRender(){
  const c=calc(values()), v=cgVehicle(), L=Number($('cgWheelbase').value), T=Number($('cgTrack').value);
  const valid=!!c&&Number.isFinite(L)&&L>0&&Number.isFinite(T)&&T>0;
  const ids=['cgFromFront','cgFromRear','cgFromLeft','cgFromRight','cgHeight','cgAngle'];
- if(!valid){ids.forEach(id=>$(id).textContent='—');$('cgOffset').textContent='Bitte gültige Radlasten, Radstand und Spurweite eingeben.';$('cgDot').setAttribute('opacity','.3');$('cgCross').setAttribute('opacity','.3');$('cgWarning').textContent='';return}
+ if(!valid){ids.forEach(id=>$(id).textContent='—');$('cgOffset').textContent='Bitte gültige Radlasten, Radstand und Spurweite eingeben.';$('cgDot').setAttribute('opacity','.3');$('cgCross').setAttribute('opacity','.3');$('cgDotHalo').setAttribute('opacity','0');$('cgWarning').textContent='';return}
  // x measured from left, y from front; positive lateral offset means right.
  const frontDist=L*c.rear/c.total,rearDist=L*c.front/c.total;
  const leftDist=T*c.right/c.total,rightDist=T*c.left/c.total;
  [['cgFromFront',frontDist],['cgFromRear',rearDist],['cgFromLeft',leftDist],['cgFromRight',rightDist]].forEach(([id,val])=>$(id).textContent=fmt(val)+' mm');
  const lateral=leftDist-T/2, longitudinal=frontDist-L/2;
  $('cgOffset').textContent='Längsversatz zur Fahrzeugmitte: '+fmt(Math.abs(longitudinal))+' mm '+(Math.abs(longitudinal)<.05?'(mittig)':longitudinal<0?'nach vorne':'nach hinten')+'. Seitlicher Versatz: '+fmt(Math.abs(lateral))+' mm '+(Math.abs(lateral)<.05?'(mittig)':lateral<0?'nach links':'nach rechts')+'.';
- const x=65+210*leftDist/T, y=64+137*frontDist/L;
- $('cgDot').setAttribute('cx',x);$('cgDot').setAttribute('cy',y);$('cgDot').setAttribute('opacity','1');
+ const x=65+210*leftDist/T, y=79+180*frontDist/L;
+ $('cgDot').setAttribute('cx',x);$('cgDot').setAttribute('cy',y);$('cgDot').setAttribute('opacity','1');$('cgDotHalo').setAttribute('cx',x);$('cgDotHalo').setAttribute('cy',y);$('cgDotHalo').setAttribute('opacity','.2');
  $('cgCross').setAttribute('d',`M${x-15} ${y} H${x+15} M${x} ${y-15} V${y+15}`);$('cgCross').setAttribute('opacity','1');
  const H=Number($('cgLift').value),r=Number($('cgRadius').value),ground=Number($('cgGround').value);
  $('cgHeight').textContent='—';$('cgAngle').textContent='—';$('cgWarning').textContent='';
@@ -316,7 +335,21 @@ function cgRender(){
  $('cgHeight').textContent=fmt(height)+' mm';
  if(height>2*T||height>2*L)$('cgWarning').textContent='Sehr hoher Wert: bitte Hubhöhe, Achslast und Einheiten kontrollieren.';
 }
-cgIds.forEach(id=>$(id).addEventListener('input',cgSave));
+cgIds.forEach(id=>$(id).addEventListener('input',()=>{cgSave();$('cgCalcStatus').textContent='Eingaben geändert – tippe auf „Schwerpunkt jetzt berechnen“. ';}));
+$('cgCalculate').addEventListener('click',()=>{
+  // Always refresh from the current wheel-load and geometry fields.
+  cgSave();
+  cgRender();
+  const c=calc(values()),L=Number($('cgWheelbase').value),T=Number($('cgTrack').value);
+  if(!c||!$('cgWheelbase').value||!$('cgTrack').value||L<=0||T<=0){
+    $('cgCalcStatus').textContent='⚠️ Bitte zuerst alle vier Radlasten, Radstand und Spurweite eingeben.';
+    $('cgCalcStatus').style.color='#ffc27c';
+    return;
+  }
+  $('cgCalcStatus').textContent='✓ Schwerpunkt mit den aktuellen Radlasten neu berechnet.';
+  $('cgCalcStatus').style.color='#9cdeba';
+  $('cgPanel').querySelector('.cg-card').scrollIntoView({behavior:'smooth',block:'nearest'});
+});
 
 window.addEventListener('resize',()=>{if(currentTab==='history')renderHistory()});
 load();activeId=db.vehicles[0]?.id||null;cgLoad();renderGarage();if(activeId)selectVehicle(activeId);else{$('activeName').textContent='Noch kein Fahrzeug';renderResults()}renderHistory();
