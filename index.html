@@ -152,13 +152,15 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   </div>
  </section>
 <section class="panel" id="cgPanel">
- <div class="sectionhead"><h2>🎯 Schwerpunkt-Rechner</h2><span class="pill">UPDATE · V1.2.2</span></div>
+ <div class="sectionhead"><h2>🎯 Schwerpunkt-Rechner</h2><span class="pill">UPDATE · V1.2.4</span></div>
  <p class="note">Nach dem Prinzip der statischen Achslastmessung: Längs- und Seitenlage werden aus deinen vier Radlasten berechnet. Für die Höhe ist eine zweite Messung mit angehobener Achse nötig.</p>
  <div class="cg-fields">
   <div><label for="cgWheelbase">Radstand L (mm)</label><input id="cgWheelbase" type="number" min="1" step="0.1" placeholder="z. B. 325"></div>
   <div><label for="cgTrack">Spurweite T (mm, Radmitte–Radmitte)</label><input id="cgTrack" type="number" min="1" step="0.1" placeholder="z. B. 245"></div>
  </div>
- <div class="cg-card">
+ <button id="cgCalculate" type="button" style="width:100%;margin:12px 0;background:#e8a15c;color:#15202c;font-weight:800">🎯 Schwerpunkt jetzt berechnen</button>
+<p class="cg-help" id="cgCalcStatus" aria-live="polite">Vier Radlasten sowie Radstand und Spurweite eingeben.</p>
+<div class="cg-card">
   <strong>Schwerpunkt in der Draufsicht</strong>
   <svg class="cg-diagram" id="cgDiagram" viewBox="0 0 360 380" role="img" aria-label="Technische Draufsicht eines Rock Crawlers: Leiterrahmen, Starrachsen, Dämpfer, Stollenreifen und Schwerpunkt">
     <defs>
@@ -235,7 +237,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
  </section>
 </div>
 <div id="storageStatus" class="note" role="status" aria-live="polite" style="padding:10px;border:1px solid #35485b;border-radius:10px;margin:10px 4px">Speicher wird geprüft …</div>
-<footer class="note" style="padding:8px 4px">Version 1.2.3 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
+<footer class="note" style="padding:8px 4px">Version 1.2.4 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
 </div>
 <input type="file" id="importFile" accept="application/json,.json" class="hidden">
 <div id="modalRoot"></div><div id="toast" class="toast hidden"></div>
@@ -443,10 +445,10 @@ $('cgCalculate').addEventListener('click',()=>{
   }
   $('cgCalcStatus').textContent='✓ Schwerpunkt mit den aktuellen Radlasten neu berechnet.';
   $('cgCalcStatus').style.color='#9cdeba';
-  $('cgPanel').querySelector('.cg-card').scrollIntoView({behavior:'smooth',block:'nearest'});
+  $('cgPanel').querySelector('.cg-card')?.scrollIntoView({behavior:'smooth',block:'nearest'});
 });
 
 window.addEventListener('resize',()=>{if(currentTab==='history')renderHistory()});
-initializeStorage();
+initializeStorage().catch(e=>{console.error(e);storageMessage('⚠️ Startfehler: '+e.message,true)});
 </script>
 </body></html>
