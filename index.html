@@ -83,7 +83,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
     <div class="corner fr"><div class="pos">Vorne rechts</div><div class="grams" id="vizfr">—</div><div class="share" id="vizpfr">—</div></div>
     <div class="car-center">
      <div class="axle-label">VORNE</div>
-     <div class="axle-total" id="vizfront">—<small id="vizfrontpct">—</small></div>
+     <div class="axle-total" id="vizfront"><span id="vizfrontweight">—</span><small id="vizfrontpct">—</small></div>
      <svg class="car-silhouette" viewBox="0 0 180 270" role="img" aria-label="Breiter Rock Crawler in Draufsicht mit vier Stollenreifen">
 <defs>
  <linearGradient id="crawlerPaint" x1="0" x2="1"><stop stop-color="#1b3347"/><stop offset=".48" stop-color="#47627a"/><stop offset="1" stop-color="#172c40"/></linearGradient>
@@ -112,7 +112,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
 <path d="M49 25 H131 M48 242 H132" stroke="#d5e1e9" stroke-width="5" stroke-linecap="round"/>
 <path d="M90 5 V0 M85 7 L90 0 L95 7" stroke="#67e6a6" stroke-width="2" fill="none"/>
 </svg>
-     <div class="axle-total" id="vizrear">—<small id="vizrearpct">—</small></div>
+     <div class="axle-total" id="vizrear"><span id="vizrearweight">—</span><small id="vizrearpct">—</small></div>
      <div class="axle-label">HINTEN</div>
     </div>
     <div class="corner rl"><div class="pos">Hinten links</div><div class="grams" id="vizrl">—</div><div class="share" id="vizprl">—</div></div>
@@ -152,7 +152,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   </div>
  </section>
 <section class="panel" id="cgPanel">
- <div class="sectionhead"><h2>🎯 Schwerpunkt-Rechner</h2><span class="pill">UPDATE · V1.2.4</span></div>
+ <div class="sectionhead"><h2>🎯 Schwerpunkt-Rechner</h2><span class="pill">UPDATE · V1.2.5</span></div>
  <p class="note">Nach dem Prinzip der statischen Achslastmessung: Längs- und Seitenlage werden aus deinen vier Radlasten berechnet. Für die Höhe ist eine zweite Messung mit angehobener Achse nötig.</p>
  <div class="cg-fields">
   <div><label for="cgWheelbase">Radstand L (mm)</label><input id="cgWheelbase" type="number" min="1" step="0.1" placeholder="z. B. 325"></div>
@@ -237,7 +237,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
  </section>
 </div>
 <div id="storageStatus" class="note" role="status" aria-live="polite" style="padding:10px;border:1px solid #35485b;border-radius:10px;margin:10px 4px">Speicher wird geprüft …</div>
-<footer class="note" style="padding:8px 4px">Version 1.2.4 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
+<footer class="note" style="padding:8px 4px">Version 1.2.5 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
 </div>
 <input type="file" id="importFile" accept="application/json,.json" class="hidden">
 <div id="modalRoot"></div><div id="toast" class="toast hidden"></div>
@@ -321,7 +321,7 @@ async function initializeStorage(){
  if(idbData&&Array.isArray(idbData.vehicles)){
   // Prefer the larger complete data set if the legacy copy is older or truncated.
   const count=x=>x.vehicles.reduce((n,v)=>n+1+(v.measurements?.length||0),0);
-  if(count(idbData)>=count(db))db=normalizeData(idbData);
+  if(count(idbData)>count(db))db=normalizeData(idbData);
  }
  activeId=db.vehicles[0]?.id||null;
  storageReady=true;
@@ -339,7 +339,7 @@ function values(){return ['fl','fr','rl','rr'].map(id=>$(id).value)}
 function renderVisual(c){
  const keys=['fl','fr','rl','rr'];
  if(!c){
-  ['vizfl','vizfr','vizrl','vizrr','vizpfl','vizpfr','vizprl','vizprr','vizfront','vizrear','vizfrontpct','vizrearpct','viztotal','vizleft','vizright'].forEach(id=>{const e=$(id);if(e)e.textContent='—'});
+  ['vizfl','vizfr','vizrl','vizrr','vizpfl','vizpfr','vizprl','vizprr','vizfrontweight','vizrearweight','vizfrontpct','vizrearpct','viztotal','vizleft','vizright'].forEach(id=>{const e=$(id);if(e)e.textContent='—'});
   document.querySelectorAll('.corner').forEach(e=>{e.style.background='#121d2a';e.style.borderColor='#34445a'});
   return;
  }
@@ -357,15 +357,15 @@ function renderVisual(c){
   $('viz'+k).style.color=ink;
   $('vizp'+k).style.color=border;
  });
- $('vizfront').childNodes[0].textContent=fmt(c.front)+' g';
+ $('vizfrontweight').textContent=fmt(c.front)+' g';
  $('vizfrontpct').textContent=pct(c.share(c.front));
- $('vizrear').childNodes[0].textContent=fmt(c.rear)+' g';
+ $('vizrearweight').textContent=fmt(c.rear)+' g';
  $('vizrearpct').textContent=pct(c.share(c.rear));
  $('viztotal').textContent=fmt(c.total)+' g';
  $('vizleft').textContent=pct(c.share(c.left));
  $('vizright').textContent=pct(c.share(c.right));
 }
-function renderResults(){let c=calc(values());renderVisual(c);cgRender();const ids=['total','front','rear','lr','frontg','rearg','lrg','frontpct','rearpct','leftpct','rightpct','vfl','vfr','vrl','vrr','pfl','pfr','prl','prr','diffLR','diffLRp','diffFB','diffFBp','diagA','diagAg','diagB','diagBg','diagShare','diagNote'];if(!c){ids.forEach(id=>$(id).textContent='—');['frontbar','rearbar','leftbar','rightbar'].forEach(id=>$(id).style.width='0');return}
+function renderResults(){let c=calc(values());try{renderVisual(c)}catch(e){console.error('Grafikfehler',e)}try{cgRender()}catch(e){console.error('Schwerpunktfehler',e)}const ids=['total','front','rear','lr','frontg','rearg','lrg','frontpct','rearpct','leftpct','rightpct','vfl','vfr','vrl','vrr','pfl','pfr','prl','prr','diffLR','diffLRp','diffFB','diffFBp','diagA','diagAg','diagB','diagBg','diagShare','diagNote'];if(!c){ids.forEach(id=>$(id).textContent='—');['frontbar','rearbar','leftbar','rightbar'].forEach(id=>$(id).style.width='0');return}
 $('total').textContent=fmt(c.total)+' g';$('front').textContent=pct(c.share(c.front));$('rear').textContent=pct(c.share(c.rear));$('lr').textContent=pct(c.share(c.left))+' / '+pct(c.share(c.right));$('frontg').textContent=fmt(c.front)+' g';$('rearg').textContent=fmt(c.rear)+' g';$('lrg').textContent=fmt(c.left)+' g links · '+fmt(c.right)+' g rechts';
 [['front',c.front],['rear',c.rear],['left',c.left],['right',c.right]].forEach(([k,n])=>{$(k+'bar').style.width=c.share(n)+'%';$(k+'pct').textContent=pct(c.share(n))});
 [['fl',c.fl],['fr',c.fr],['rl',c.rl],['rr',c.rr]].forEach(([k,n])=>{$('v'+k).textContent=fmt(n)+' g';$('p'+k).textContent=pct(c.share(n))+' vom Gesamtgewicht'});
@@ -385,7 +385,7 @@ if($('removePhoto'))$('removePhoto').onclick=()=>{chosenPhoto='';removePhoto=tru
 $('modalSave').onclick=()=>{let name=$('vname').value.trim();if(!name){toast('Bitte einen Fahrzeugnamen eingeben.');return}if(v){v.name=name;v.model=$('vmodel').value.trim();if(removePhoto)delete v.photo;else if(chosenPhoto)v.photo=chosenPhoto}else{v={id:uid(),name,model:$('vmodel').value.trim(),measurements:[]};if(chosenPhoto)v.photo=chosenPhoto;db.vehicles.push(v);activeId=v.id}try{persist();$('modalRoot').innerHTML='';selectVehicle(v.id);toast('Fahrzeug gespeichert.')}catch(e){toast('Speichern fehlgeschlagen. Bitte ein kleineres Foto verwenden oder Speicherplatz freigeben.')}};
 if(v)$('modalDelete').onclick=()=>{if(confirm('Fahrzeug samt Messhistorie wirklich löschen?')){db.vehicles=db.vehicles.filter(x=>x.id!==v.id);if(activeId===v.id)activeId=db.vehicles[0]?.id||null;persist();$('modalRoot').innerHTML='';if(activeId)selectVehicle(activeId);else{$('activeName').textContent='Noch kein Fahrzeug';clearInputs()}renderHistory();toast('Fahrzeug gelöscht.')}}}
 function resizePhoto(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=640,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',0.78))};img.src=reader.result};reader.readAsDataURL(file)})}
-function saveMeasurement(){let v=active();if(!v){toast('Lege zuerst ein Fahrzeug an.');return}let a=values();if(a.some(x=>x===''||!Number.isFinite(Number(x))||Number(x)<0)||!calc(a)){toast('Bitte vier gültige Radlasten größer als 0 g eingeben.');return}let c=calc(a);let m={id:uid(),date:new Date().toISOString(),fl:c.fl,fr:c.fr,rl:c.rl,rr:c.rr,note:$('note').value.trim()};v.measurements.push(m);persist();renderHistory();toast('Messung wird gespeichert: '+fmt(c.total)+' g')}
+function saveMeasurement(){let v=active();if(!v){toast('Lege zuerst ein Fahrzeug an.');return}let a=values();if(a.some(x=>x===''||!Number.isFinite(Number(x))||Number(x)<0)||!calc(a)){toast('Bitte vier gültige Radlasten größer als 0 g eingeben.');return}let c=calc(a);let m={id:uid(),date:new Date().toISOString(),fl:c.fl,fr:c.fr,rl:c.rl,rr:c.rr,note:$('note').value.trim()};v.measurements.push(m);saveDraft();persist();renderResults();renderHistory();toast('Messung wird gespeichert: '+fmt(c.total)+' g')}
 function setTab(tab){currentTab=tab;$('measureView').classList.toggle('hidden',tab!=='measure');$('historyView').classList.toggle('hidden',tab!=='history');$('tabMeasure').classList.toggle('secondary',tab!=='measure');$('tabHistory').classList.toggle('secondary',tab!=='history');if(tab==='history')renderHistory()}
 function dateFmt(d){return new Date(d).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})}
 function renderHistory(){let v=active();$('historyList').innerHTML='';$('comparison').classList.add('hidden');if(!v){$('historyList').innerHTML='<div class="empty">Lege ein Fahrzeug an, um Messungen zu speichern.</div>';drawChart([]);return}let ms=[...(v.measurements||[])].reverse();if(!ms.length){$('historyList').innerHTML='<div class="empty">Noch keine gespeicherten Messungen.<br>Speichere deine erste Messung im Tab „Messung“.</div>';drawChart([]);return}
