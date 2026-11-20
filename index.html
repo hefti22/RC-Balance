@@ -152,7 +152,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   </div>
  </section>
 <section class="panel" id="cgPanel">
- <div class="sectionhead"><h2>🎯 Schwerpunkt-Rechner</h2><span class="pill">UPDATE · V1.2.1</span></div>
+ <div class="sectionhead"><h2>🎯 Schwerpunkt-Rechner</h2><span class="pill">UPDATE · V1.2.2</span></div>
  <p class="note">Nach dem Prinzip der statischen Achslastmessung: Längs- und Seitenlage werden aus deinen vier Radlasten berechnet. Für die Höhe ist eine zweite Messung mit angehobener Achse nötig.</p>
  <div class="cg-fields">
   <div><label for="cgWheelbase">Radstand L (mm)</label><input id="cgWheelbase" type="number" min="1" step="0.1" placeholder="z. B. 325"></div>
@@ -160,32 +160,44 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
  </div>
  <div class="cg-card">
   <strong>Schwerpunkt in der Draufsicht</strong>
-  <svg class="cg-diagram" id="cgDiagram" viewBox="0 0 340 340" role="img" aria-label="Rock Crawler von oben mit angezeigtem Schwerpunkt">
+  <svg class="cg-diagram" id="cgDiagram" viewBox="0 0 360 380" role="img" aria-label="Technische Draufsicht eines Rock Crawlers: Leiterrahmen, Starrachsen, Dämpfer, Stollenreifen und Schwerpunkt">
     <defs>
-      <pattern id="cgTread" width="12" height="14" patternUnits="userSpaceOnUse"><rect width="12" height="14" fill="#111a23"/><path d="M-2 2L8 6L14 2M-2 10L8 14L14 10" stroke="#70818d" stroke-width="4" fill="none"/></pattern>
-      <linearGradient id="cgBody" x1="0" x2="1"><stop stop-color="#21384c"/><stop offset=".5" stop-color="#5b788e"/><stop offset="1" stop-color="#1a3043"/></linearGradient>
+      <pattern id="cgKnob" width="18" height="18" patternUnits="userSpaceOnUse"><rect width="18" height="18" fill="#10161c"/><path d="M-4 4L8 8L22 4M-4 14L8 18L22 14" fill="none" stroke="#6f7e89" stroke-width="6"/></pattern>
+      <linearGradient id="cgMetal" x1="0" x2="1"><stop stop-color="#263847"/><stop offset=".5" stop-color="#71899b"/><stop offset="1" stop-color="#263847"/></linearGradient>
     </defs>
-    <text x="170" y="16" text-anchor="middle" font-size="12" fill="#9cdeba">▲ VORNE</text>
-    <g stroke="#7c99a9" stroke-width="6"><path d="M65 79H275M65 259H275"/></g>
-    <g stroke="#d6a76b" stroke-width="4"><path d="M96 79L133 115M244 79L207 115M96 259L133 223M244 259L207 223"/></g>
-    <g fill="url(#cgTread)" stroke="#99a9b3" stroke-width="2.5">
-      <rect x="39" y="45" width="52" height="68" rx="10"/><rect x="249" y="45" width="52" height="68" rx="10"/>
-      <rect x="39" y="225" width="52" height="68" rx="10"/><rect x="249" y="225" width="52" height="68" rx="10"/>
+    <text x="180" y="19" text-anchor="middle" font-size="13" fill="#8de6b3" font-weight="700">▲ FAHRTRICHTUNG</text>
+    <!-- Four wide, individually visible crawler tires -->
+    <g fill="url(#cgKnob)" stroke="#a2b3c1" stroke-width="2.5">
+      <rect x="23" y="43" width="65" height="86" rx="14"/><rect x="272" y="43" width="65" height="86" rx="14"/>
+      <rect x="23" y="251" width="65" height="86" rx="14"/><rect x="272" y="251" width="65" height="86" rx="14"/>
     </g>
-    <g fill="#121c25" stroke="#d1dbe2" stroke-width="2"><circle cx="65" cy="79" r="14"/><circle cx="275" cy="79" r="14"/><circle cx="65" cy="259" r="14"/><circle cx="275" cy="259" r="14"/></g>
-    <path d="M121 28H219L231 61L225 129L216 141V205L231 224L228 309H112L109 224L124 205V141L115 129L109 61Z" fill="url(#cgBody)" stroke="#b3c7d3" stroke-width="3"/>
-    <path d="M122 61H218L213 119H127Z" fill="#203b4c" stroke="#779bae" stroke-width="2"/>
-    <path d="M126 69H214M126 81H214M126 93H214" stroke="#557c92" stroke-width="3"/>
-    <path d="M123 145L139 130H201L217 145L212 202H128Z" fill="#102332" stroke="#a5c2d3" stroke-width="2"/>
-    <path d="M139 148H201L197 192H143Z" fill="#385a70" stroke="#89aebf"/>
-    <rect x="122" y="226" width="96" height="70" rx="4" fill="#172a39" stroke="#93aebb" stroke-width="2"/>
-    <rect x="131" y="236" width="78" height="49" fill="none" stroke="#58768a" stroke-width="2"/>
-    <path d="M110 41H230M109 301H231" stroke="#d2e1e9" stroke-width="5" stroke-linecap="round"/>
-    <path d="M170 79V259M65 169H275" stroke="#b0c9d9" stroke-width="1.5" stroke-dasharray="6 6" opacity=".6"/>
-    <circle id="cgDotHalo" cx="170" cy="169" r="19" fill="#ffba66" opacity=".2"/>
-    <circle id="cgDot" cx="170" cy="169" r="9" fill="#ffba66" stroke="#fff" stroke-width="2.5"/>
-    <path id="cgCross" d="M150 169H190M170 149V189" stroke="#ffba66" stroke-width="3"/>
-    <text x="170" y="332" text-anchor="middle" font-size="12" fill="#a9bed0">HINTEN</text>
+    <!-- Heavy-duty solid axles -->
+    <g stroke="#8c9eac" stroke-width="13"><path d="M57 86H303M57 294H303"/></g>
+    <g fill="#293e4e" stroke="#a8b7c1" stroke-width="3"><circle cx="57" cy="86" r="17"/><circle cx="303" cy="86" r="17"/><circle cx="57" cy="294" r="17"/><circle cx="303" cy="294" r="17"/></g>
+    <g fill="#b9cad3"><circle cx="57" cy="86" r="5"/><circle cx="303" cy="86" r="5"/><circle cx="57" cy="294" r="5"/><circle cx="303" cy="294" r="5"/></g>
+    <!-- Ladder-frame rails, cross members, transmission and drive shafts -->
+    <path d="M139 36L135 344M221 36L225 344" fill="none" stroke="#0b1118" stroke-width="19" stroke-linecap="round"/>
+    <path d="M139 36L135 344M221 36L225 344" fill="none" stroke="#8298a8" stroke-width="8" stroke-linecap="round"/>
+    <g stroke="#6e8393" stroke-width="9"><path d="M140 52H220M137 146H223M136 239H224M136 328H224"/></g>
+    <path d="M180 86V294" stroke="#111a22" stroke-width="15"/>
+    <path d="M180 86V294" stroke="#8095a2" stroke-width="5" stroke-dasharray="24 9"/>
+    <rect x="158" y="160" width="44" height="59" rx="10" fill="url(#cgMetal)" stroke="#b2c3cf" stroke-width="3"/>
+    <circle cx="180" cy="86" r="23" fill="#354c5c" stroke="#9fb3c1" stroke-width="4"/>
+    <circle cx="180" cy="294" r="23" fill="#354c5c" stroke="#9fb3c1" stroke-width="4"/>
+    <!-- Suspension links and orange dampers -->
+    <g stroke="#576d7d" stroke-width="6"><path d="M108 86L145 154M252 86L215 154M108 294L145 226M252 294L215 226"/></g>
+    <g stroke="#e9a85b" stroke-width="7" stroke-linecap="round"><path d="M108 92L145 128M252 92L215 128M108 288L145 252M252 288L215 252"/></g>
+    <g stroke="#d3e0e8" stroke-width="3"><path d="M116 101L135 120M244 101L225 120M116 279L135 260M244 279L225 260"/></g>
+    <!-- Winch, bumper, electronics tray -->
+    <path d="M129 29H231M126 350H234" stroke="#a8bac5" stroke-width="10" stroke-linecap="round"/>
+    <rect x="153" y="40" width="54" height="21" rx="5" fill="#15242f" stroke="#8da3b3" stroke-width="2"/>
+    <rect x="151" y="116" width="58" height="29" rx="5" fill="#142633" stroke="#6d9aaf" stroke-width="2"/>
+    <path d="M180 86V294M57 190H303" stroke="#e1f0ff" stroke-width="1.5" stroke-dasharray="6 7" opacity=".5"/>
+    <!-- Calculated center of gravity -->
+    <circle id="cgDotHalo" cx="180" cy="190" r="23" fill="#ffbd64" opacity=".22"/>
+    <circle id="cgDot" cx="180" cy="190" r="9" fill="#ffb85f" stroke="#fff6df" stroke-width="3"/>
+    <path id="cgCross" d="M159 190H201M180 169V211" stroke="#ffb85f" stroke-width="3"/>
+    <text x="180" y="373" text-anchor="middle" font-size="12" fill="#a5b7c5">HINTEN · STARRACHSE</text>
   </svg>
   <p class="cg-help" style="text-align:center">🟠 Orange Markierung = berechneter Schwerpunkt (Draufsicht)</p>
   <div class="cg-kpis">
@@ -222,7 +234,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   <div id="historyList"></div>
  </section>
 </div>
-<footer class="note" style="padding:8px 4px">Version 1.2.1 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
+<div id="storageStatus" class="note" role="status" aria-live="polite" style="padding:10px;border:1px solid #35485b;border-radius:10px;margin:10px 4px">Speicher wird geprüft …</div>\n<footer class="note" style="padding:8px 4px">Version 1.2.2 · Berechnungen erfolgen lokal im Browser. Cloud-Synchronisierung ist in dieser Version noch nicht eingerichtet.</footer>
 </div>
 <input type="file" id="importFile" accept="application/json,.json" class="hidden">
 <div id="modalRoot"></div><div id="toast" class="toast hidden"></div>
@@ -233,8 +245,90 @@ const $=id=>document.getElementById(id);
 const fmt=n=>new Intl.NumberFormat('de-DE',{maximumFractionDigits:1}).format(n);
 const pct=n=>`${fmt(n)} %`;
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
-function load(){try{const x=localStorage.getItem(KEY);if(x)db=JSON.parse(x);if(!db.vehicles)db={vehicles:[]}}catch(e){db={vehicles:[]}}}
-function persist(){localStorage.setItem(KEY,JSON.stringify(db));renderGarage()}
+// V1.2.2: IndexedDB is the primary durable store (larger capacity for vehicle photos).
+// Legacy localStorage is imported without changing its key; no automatic destructive migration.
+const IDB_NAME='RCBalanceLocalV122', IDB_STORE='records', DRAFT_KEY='rcbalance_drafts_v122';
+let idbPromise=null,storageReady=false,storageRevision=0,lastSavedRevision=0,writeQueue=Promise.resolve(),drafts={};
+function storageMessage(msg,error=false){const e=$('storageStatus');if(e){e.textContent=msg;e.style.color=error?'#ffb77c':'#a7ddc2'}}
+function openStorage(){
+ if(!('indexedDB' in window))return Promise.reject(Error('IndexedDB nicht verfügbar'));
+ if(idbPromise)return idbPromise;
+ idbPromise=new Promise((resolve,reject)=>{
+  const req=indexedDB.open(IDB_NAME,1);
+  req.onupgradeneeded=()=>{const d=req.result;if(!d.objectStoreNames.contains(IDB_STORE))d.createObjectStore(IDB_STORE)};
+  req.onsuccess=()=>resolve(req.result);
+  req.onerror=()=>reject(req.error||Error('Datenbank nicht verfügbar'));
+ });
+ return idbPromise;
+}
+async function idbRead(key){
+ const d=await openStorage();
+ return new Promise((resolve,reject)=>{const tx=d.transaction(IDB_STORE,'readonly'),r=tx.objectStore(IDB_STORE).get(key);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});
+}
+async function idbWrite(key,val){
+ const d=await openStorage();
+ return new Promise((resolve,reject)=>{const tx=d.transaction(IDB_STORE,'readwrite');tx.objectStore(IDB_STORE).put(val,key);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)});
+}
+function safeLocalGet(key){try{return localStorage.getItem(key)}catch(e){return null}}
+function safeLocalSet(key,value){try{localStorage.setItem(key,value);return true}catch(e){return false}}
+function normalizeData(x){
+ if(!x||!Array.isArray(x.vehicles))return {vehicles:[]};
+ return {...x,vehicles:x.vehicles.filter(v=>v&&v.id).map(v=>({...v,measurements:Array.isArray(v.measurements)?v.measurements:[]}))};
+}
+function load(){
+ try{const x=safeLocalGet(KEY);if(x)db=normalizeData(JSON.parse(x));}catch(e){db={vehicles:[]}}
+ try{drafts=JSON.parse(safeLocalGet(DRAFT_KEY)||'{}')||{}}catch(e){drafts={}}
+}
+function persist(){
+ const snapshot=JSON.stringify(db);
+ const rev=++storageRevision;
+ // A secondary copy is attempted, but failure (e.g. photo storage quota) is not silent.
+ const legacySaved=safeLocalSet(KEY,snapshot);
+ storageMessage('⏳ Speichere Fahrzeugdaten …');
+ writeQueue=writeQueue.catch(()=>{}).then(async()=>{
+  let primarySaved=false;
+  try{await idbWrite('garage',JSON.parse(snapshot));primarySaved=true}
+  catch(e){console.error('IndexedDB write failed',e)}
+  if(primarySaved||legacySaved){
+    lastSavedRevision=rev;
+    if(rev===storageRevision)storageMessage('✓ Garage dauerhaft auf diesem Gerät gespeichert'+(!primarySaved?' (Browser-Speicher)':'')+'.');
+  }else{
+    storageMessage('⚠️ SPEICHERN FEHLGESCHLAGEN! Bitte sofort JSON-Backup exportieren und Speicher prüfen.',true);
+    toast('Speichern fehlgeschlagen – Daten nicht gesichert!');
+  }
+ });
+ renderGarage();
+ return writeQueue;
+}
+function saveDraft(){
+ if(!activeId)return;
+ drafts[activeId]={fl:$('fl').value,fr:$('fr').value,rl:$('rl').value,rr:$('rr').value,note:$('note').value};
+ const snapshot=JSON.stringify(drafts);
+ safeLocalSet(DRAFT_KEY,snapshot);
+ writeQueue=writeQueue.catch(()=>{}).then(()=>idbWrite('drafts',JSON.parse(snapshot))).catch(()=>storageMessage('⚠️ Entwurf nicht gespeichert. Bitte JSON-Backup erstellen.',true));
+}
+async function initializeStorage(){
+ load();
+ let idbData=null;
+ try{
+  idbData=await idbRead('garage');
+  const idbDrafts=await idbRead('drafts');
+  if(idbDrafts&&typeof idbDrafts==='object')drafts={...idbDrafts,...drafts};
+ }catch(e){console.warn('IndexedDB unavailable',e)}
+ if(idbData&&Array.isArray(idbData.vehicles)){
+  // Prefer the larger complete data set if the legacy copy is older or truncated.
+  const count=x=>x.vehicles.reduce((n,v)=>n+1+(v.measurements?.length||0),0);
+  if(count(idbData)>=count(db))db=normalizeData(idbData);
+ }
+ activeId=db.vehicles[0]?.id||null;
+ storageReady=true;
+ cgLoad();renderGarage();
+ if(activeId)selectVehicle(activeId);
+ else{$('activeName').textContent='Noch kein Fahrzeug';renderResults()}
+ renderHistory();
+ storageMessage('✓ Lokaler Speicher bereit. Fahrzeuge und Messungen bleiben auf diesem Gerät.');
+ if(!idbData&&db.vehicles.length)persist();
+}
 function active(){return db.vehicles.find(v=>v.id===activeId)||null}
 function calc(a){let [fl,fr,rl,rr]=a.map(Number);let total=fl+fr+rl+rr;if(!a.every(x=>Number.isFinite(Number(x))&&x!==''&&Number(x)>=0)||total<=0)return null;return {fl,fr,rl,rr,total,front:fl+fr,rear:rl+rr,left:fl+rl,right:fr+rr,share:x=>x/total*100}}
 function values(){return ['fl','fr','rl','rr'].map(id=>$(id).value)}
@@ -279,8 +373,8 @@ const diagA=c.fl+c.rr,diagB=c.fr+c.rl,diagPct=c.share(diagA);$('diagA').textCont
 function renderGarage(){const el=$('garage');if(!el)return;el.innerHTML='';if(!db.vehicles.length){el.innerHTML='<div class="empty">Deine Garage ist noch leer.<br>Lege dein erstes Fahrzeug an.</div>';return}
 db.vehicles.forEach(v=>{let last=v.measurements?.[v.measurements.length-1],c=last?calc([last.fl,last.fr,last.rl,last.rr]):null;let d=document.createElement('div');d.className='vehicle'+(v.id===activeId?' active':'');const photo=v.photo?`<img class="vehicle-photo" src="${v.photo}" alt="Foto von ${esc(v.name)}">`:'<div class="vehicle-photo" style="display:grid;place-items:center;font-size:30px">🚙</div>';d.innerHTML=`<div class="vehicle-top">${photo}<div><h3>${esc(v.name)}</h3><div class="meta">${esc(v.model||'RC-Fahrzeug')}</div><div class="meta">${v.measurements.length} Messung(en)</div></div></div><div style="font-size:20px;font-weight:850">${c?fmt(c.total)+' g':'Noch keine Messung'}</div><div class="meta">${c?'Vorne '+pct(c.share(c.front))+' · Links '+pct(c.share(c.left)):'Radlasten noch nicht erfasst'}</div><div class="actions"><button class="small" data-open="${v.id}">${v.id===activeId?'Ausgewählt':'Öffnen'}</button><button class="secondary small" data-edit="${v.id}">Bearbeiten</button></div>`;el.appendChild(d)});el.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>selectVehicle(b.dataset.open));el.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>vehicleModal(b.dataset.edit))}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function selectVehicle(id){activeId=id;cgLoad();let v=active();$('activeName').textContent=v?.name||'Noch kein Fahrzeug';if(v){let last=v.measurements.at(-1);if(last){['fl','fr','rl','rr'].forEach((k,i)=>$(k).value=last[k]);$('note').value=''}else clearInputs(false)}renderGarage();renderResults();renderHistory()}
-function clearInputs(clearNote=true){['fl','fr','rl','rr'].forEach(k=>$(k).value='');if(clearNote)$('note').value='';renderResults()}
+function selectVehicle(id){activeId=id;cgLoad();let v=active();$('activeName').textContent=v?.name||'Noch kein Fahrzeug';if(v){let last=v.measurements.at(-1);if(drafts[id]){['fl','fr','rl','rr'].forEach(k=>$(k).value=drafts[id][k]??'');$('note').value=drafts[id].note||''}else if(last){['fl','fr','rl','rr'].forEach(k=>$(k).value=last[k]);$('note').value=''}else clearInputs(false)}renderGarage();renderResults();renderHistory()}
+function clearInputs(clearNote=true){['fl','fr','rl','rr'].forEach(k=>$(k).value='');if(clearNote)$('note').value='';renderResults();saveDraft()}
 function vehicleModal(id=null){let v=id?db.vehicles.find(x=>x.id===id):null;let chosenPhoto=v?.photo||'',removePhoto=false;$('modalRoot').innerHTML=`<div class="modalback"><div class="modal"><h2>${v?'Fahrzeug bearbeiten':'Neues Fahrzeug'}</h2><div class="field"><label for="vname">Fahrzeugname *</label><input id="vname" maxlength="60" placeholder="z. B. SCX10 III Gladiator" value="${esc(v?.name||'')}"></div><div class="field"><label for="vmodel">Modell / Notiz (optional)</label><input id="vmodel" maxlength="100" placeholder="z. B. Axial, 3,8 kg" value="${esc(v?.model||'')}"></div><div class="field"><label for="vphoto">Fahrzeugfoto (optional)</label><input id="vphoto" type="file" accept="image/*"><div class="photo-preview" id="photoPreview">${chosenPhoto?`<img src="${chosenPhoto}" alt="Fahrzeugfoto"><span class="note">Aktuelles Foto</span>`:'<span class="note">Noch kein Foto ausgewählt.</span>'}</div>${chosenPhoto?'<button type="button" class="secondary small" id="removePhoto" style="margin-top:8px">Foto entfernen</button>':''}</div><div class="btnrow"><button id="modalSave">Speichern</button><button class="secondary" id="modalCancel">Abbrechen</button>${v?'<button class="danger" id="modalDelete">Fahrzeug löschen</button>':''}</div><p class="note">Fotos werden verkleinert auf diesem Gerät gespeichert und sind auch im Backup enthalten. Beim Löschen werden auch alle zugehörigen Messungen entfernt.</p></div></div>`;
 $('modalCancel').onclick=()=>$('modalRoot').innerHTML='';
 $('vphoto').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith('image/')){toast('Bitte eine Bilddatei auswählen.');return}try{chosenPhoto=await resizePhoto(file);removePhoto=false;$('photoPreview').innerHTML=`<img src="${chosenPhoto}" alt="Vorschau Fahrzeugfoto"><span class="note">Foto bereit</span>`}catch(err){toast('Das Foto konnte nicht geladen werden.')}};
@@ -288,20 +382,20 @@ if($('removePhoto'))$('removePhoto').onclick=()=>{chosenPhoto='';removePhoto=tru
 $('modalSave').onclick=()=>{let name=$('vname').value.trim();if(!name){toast('Bitte einen Fahrzeugnamen eingeben.');return}if(v){v.name=name;v.model=$('vmodel').value.trim();if(removePhoto)delete v.photo;else if(chosenPhoto)v.photo=chosenPhoto}else{v={id:uid(),name,model:$('vmodel').value.trim(),measurements:[]};if(chosenPhoto)v.photo=chosenPhoto;db.vehicles.push(v);activeId=v.id}try{persist();$('modalRoot').innerHTML='';selectVehicle(v.id);toast('Fahrzeug gespeichert.')}catch(e){toast('Speichern fehlgeschlagen. Bitte ein kleineres Foto verwenden oder Speicherplatz freigeben.')}};
 if(v)$('modalDelete').onclick=()=>{if(confirm('Fahrzeug samt Messhistorie wirklich löschen?')){db.vehicles=db.vehicles.filter(x=>x.id!==v.id);if(activeId===v.id)activeId=db.vehicles[0]?.id||null;persist();$('modalRoot').innerHTML='';if(activeId)selectVehicle(activeId);else{$('activeName').textContent='Noch kein Fahrzeug';clearInputs()}renderHistory();toast('Fahrzeug gelöscht.')}}}
 function resizePhoto(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=640,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',0.78))};img.src=reader.result};reader.readAsDataURL(file)})}
-function saveMeasurement(){let v=active();if(!v){toast('Lege zuerst ein Fahrzeug an.');return}let a=values();if(a.some(x=>x===''||!Number.isFinite(Number(x))||Number(x)<0)||!calc(a)){toast('Bitte vier gültige Radlasten größer als 0 g eingeben.');return}let c=calc(a);let m={id:uid(),date:new Date().toISOString(),fl:c.fl,fr:c.fr,rl:c.rl,rr:c.rr,note:$('note').value.trim()};v.measurements.push(m);persist();renderHistory();toast('Messung gespeichert: '+fmt(c.total)+' g')}
+function saveMeasurement(){let v=active();if(!v){toast('Lege zuerst ein Fahrzeug an.');return}let a=values();if(a.some(x=>x===''||!Number.isFinite(Number(x))||Number(x)<0)||!calc(a)){toast('Bitte vier gültige Radlasten größer als 0 g eingeben.');return}let c=calc(a);let m={id:uid(),date:new Date().toISOString(),fl:c.fl,fr:c.fr,rl:c.rl,rr:c.rr,note:$('note').value.trim()};v.measurements.push(m);persist();renderHistory();toast('Messung wird gespeichert: '+fmt(c.total)+' g')}
 function setTab(tab){currentTab=tab;$('measureView').classList.toggle('hidden',tab!=='measure');$('historyView').classList.toggle('hidden',tab!=='history');$('tabMeasure').classList.toggle('secondary',tab!=='measure');$('tabHistory').classList.toggle('secondary',tab!=='history');if(tab==='history')renderHistory()}
 function dateFmt(d){return new Date(d).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})}
 function renderHistory(){let v=active();$('historyList').innerHTML='';$('comparison').classList.add('hidden');if(!v){$('historyList').innerHTML='<div class="empty">Lege ein Fahrzeug an, um Messungen zu speichern.</div>';drawChart([]);return}let ms=[...(v.measurements||[])].reverse();if(!ms.length){$('historyList').innerHTML='<div class="empty">Noch keine gespeicherten Messungen.<br>Speichere deine erste Messung im Tab „Messung“.</div>';drawChart([]);return}
 ms.forEach(m=>{let c=calc([m.fl,m.fr,m.rl,m.rr]),d=document.createElement('div');d.className='historyitem';d.innerHTML=`<div class="historytop"><div><strong>${dateFmt(m.date)}</strong><br><small>${esc(m.note||'Keine Notiz')}</small></div><div style="text-align:right"><strong>${fmt(c.total)} g</strong><br><button class="secondary small" data-load="${m.id}">Laden</button> <button class="danger small" data-del="${m.id}">×</button></div></div><div class="historydetails"><div class="mini">Vorne<b>${pct(c.share(c.front))}</b></div><div class="mini">Links<b>${pct(c.share(c.left))}</b></div><div class="mini">Rechts / hinten<b>${pct(c.share(c.right))} / ${pct(c.share(c.rear))}</b></div></div>`; $('historyList').appendChild(d)});
-$('historyList').querySelectorAll('[data-load]').forEach(b=>b.onclick=()=>{let m=v.measurements.find(m=>m.id===b.dataset.load);['fl','fr','rl','rr'].forEach(k=>$(k).value=m[k]);$('note').value=m.note||'';renderResults();setTab('measure');toast('Ältere Messung geladen. Speichern legt einen neuen Verlaufseintrag an.')});
+$('historyList').querySelectorAll('[data-load]').forEach(b=>b.onclick=()=>{let m=v.measurements.find(m=>m.id===b.dataset.load);['fl','fr','rl','rr'].forEach(k=>$(k).value=m[k]);$('note').value=m.note||'';renderResults();saveDraft();setTab('measure');toast('Ältere Messung geladen. Speichern legt einen neuen Verlaufseintrag an.')});
 $('historyList').querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('Diese Messung löschen?')){v.measurements=v.measurements.filter(m=>m.id!==b.dataset.del);persist();renderHistory();toast('Messung gelöscht.')}});
 drawChart([...v.measurements])}
 function drawChart(ms){let canvas=$('chart'),wrap=$('chartWrap'),ctx=canvas.getContext('2d');let w=wrap.clientWidth||320,h=wrap.clientHeight||210,ratio=window.devicePixelRatio||1;canvas.width=w*ratio;canvas.height=h*ratio;ctx.scale(ratio,ratio);ctx.clearRect(0,0,w,h);if(!ms.length){ctx.fillStyle='#9eacbf';ctx.font='13px sans-serif';ctx.textAlign='center';ctx.fillText('Noch keine Daten für das Diagramm',w/2,h/2);return}let data=ms.slice(-12).map(m=>{let c=calc([m.fl,m.fr,m.rl,m.rr]);return {front:c.share(c.front),left:c.share(c.left),label:new Date(m.date).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}});let pad={l:35,r:10,t:15,b:29},pw=w-pad.l-pad.r,ph=h-pad.t-pad.b;ctx.font='10px sans-serif';ctx.textAlign='right';for(let val of [40,45,50,55,60]){let y=pad.t+(60-val)/20*ph;ctx.strokeStyle='#2d394a';ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillStyle='#9eacbf';ctx.fillText(val+'%',pad.l-6,y+3)}function line(key,color){ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.beginPath();data.forEach((d,i)=>{let x=pad.l+(data.length===1?pw/2:i/(data.length-1)*pw),y=pad.t+(60-d[key])/20*ph;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();data.forEach((d,i)=>{let x=pad.l+(data.length===1?pw/2:i/(data.length-1)*pw),y=pad.t+(60-d[key])/20*ph;ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fill()})}line('front','#55b6ff');line('left','#98e58e');ctx.textAlign='center';data.forEach((d,i)=>{if(data.length<7||i%Math.ceil(data.length/6)===0||i===data.length-1){let x=pad.l+(data.length===1?pw/2:i/(data.length-1)*pw);ctx.fillStyle='#9eacbf';ctx.fillText(d.label,x,h-9)}});ctx.textAlign='left';ctx.fillStyle='#55b6ff';ctx.fillText('● Vorne',pad.l+3,10);ctx.fillStyle='#98e58e';ctx.fillText('● Links',pad.l+65,10)}
 $('compareBtn').onclick=()=>{let v=active(),ms=v?.measurements||[];if(ms.length<2){toast('Mindestens zwei Messungen speichern.');return}let a=ms[ms.length-2],b=ms[ms.length-1],ca=calc([a.fl,a.fr,a.rl,a.rr]),cb=calc([b.fl,b.fr,b.rl,b.rr]);let html=`<div class="panel" style="margin:0 0 12px;background:#101823"><strong>Vergleich der letzten beiden Messungen</strong><div class="historydetails"><div class="mini">Gesamtgewicht<b>${fmt(ca.total)} → ${fmt(cb.total)} g</b></div><div class="mini">Vorne<b>${pct(ca.share(ca.front))} → ${pct(cb.share(cb.front))}</b></div><div class="mini">Links<b>${pct(ca.share(ca.left))} → ${pct(cb.share(cb.left))}</b></div><div class="mini">VL + HR<b>${pct(ca.share(ca.fl+ca.rr))} → ${pct(cb.share(cb.fl+cb.rr))}</b></div><div class="mini">VR + HL<b>${pct(ca.share(ca.fr+ca.rl))} → ${pct(cb.share(cb.fr+cb.rl))}</b></div></div><div class="note" style="margin-top:8px">Änderung Gesamtgewicht: ${(cb.total-ca.total>=0?'+':'')+fmt(cb.total-ca.total)} g · Vorne: ${(cb.share(cb.front)-ca.share(ca.front)>=0?'+':'')+fmt(cb.share(cb.front)-ca.share(ca.front))} Prozentpunkte · Links: ${(cb.share(cb.left)-ca.share(ca.left)>=0?'+':'')+fmt(cb.share(cb.left)-ca.share(ca.left))} Prozentpunkte</div></div>`;$('comparison').innerHTML=html;$('comparison').classList.remove('hidden')};
 function toast(msg){$('toast').textContent=msg;$('toast').classList.remove('hidden');setTimeout(()=>$('toast').classList.add('hidden'),2500)}
-$('addVehicle').onclick=()=>vehicleModal();$('saveMeasurement').onclick=saveMeasurement;$('clearInputs').onclick=()=>clearInputs();['fl','fr','rl','rr'].forEach(k=>$(k).addEventListener('input',renderResults));$('tabMeasure').onclick=()=>setTab('measure');$('tabHistory').onclick=()=>setTab('history');
-$('backupBtn').onclick=()=>{let choice=prompt('Backup: E = Exportieren, I = Importieren','E');if(!choice)return;if(choice.toUpperCase()==='E'){let blob=new Blob([JSON.stringify({...db,cgSettings:cgStore},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='rc-balance-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(url);toast('Backup exportiert.')}else if(choice.toUpperCase()==='I')$('importFile').click()};
-$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let incoming=JSON.parse(await f.text());if(!Array.isArray(incoming.vehicles))throw Error();if(confirm('Backup importieren und aktuelle Garage ersetzen?')){db=incoming;cgStore=incoming.cgSettings||{};localStorage.setItem(CGKEY,JSON.stringify(cgStore));activeId=db.vehicles[0]?.id||null;cgLoad();persist();if(activeId)selectVehicle(activeId);renderHistory();toast('Backup importiert.')}}catch(err){toast('Die Datei ist kein gültiges RC-Balance-Backup.')}e.target.value=''};
+$('addVehicle').onclick=()=>vehicleModal();$('saveMeasurement').onclick=saveMeasurement;$('clearInputs').onclick=()=>clearInputs();['fl','fr','rl','rr'].forEach(k=>$(k).addEventListener('input',()=>{renderResults();saveDraft()}));$('note').addEventListener('input',saveDraft);$('tabMeasure').onclick=()=>setTab('measure');$('tabHistory').onclick=()=>setTab('history');
+$('backupBtn').onclick=()=>{let choice=prompt('Backup: E = Exportieren, I = Importieren','E');if(!choice)return;if(choice.toUpperCase()==='E'){let blob=new Blob([JSON.stringify({...db,cgSettings:cgStore,drafts},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='rc-balance-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(url);toast('Backup exportiert.')}else if(choice.toUpperCase()==='I')$('importFile').click()};
+$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let incoming=JSON.parse(await f.text());if(!Array.isArray(incoming.vehicles))throw Error();if(confirm('Backup importieren und aktuelle Garage ersetzen?')){db=normalizeData(incoming);drafts=incoming.drafts||{};safeLocalSet(DRAFT_KEY,JSON.stringify(drafts));cgStore=incoming.cgSettings||{};localStorage.setItem(CGKEY,JSON.stringify(cgStore));activeId=db.vehicles[0]?.id||null;cgLoad();persist();if(activeId)selectVehicle(activeId);renderHistory();toast('Backup importiert.')}}catch(err){toast('Die Datei ist kein gültiges RC-Balance-Backup.')}e.target.value=''};
 
 const CGKEY='rcbalance_cg_v12';
 let cgStore={};
@@ -321,7 +415,7 @@ function cgRender(){
  [['cgFromFront',frontDist],['cgFromRear',rearDist],['cgFromLeft',leftDist],['cgFromRight',rightDist]].forEach(([id,val])=>$(id).textContent=fmt(val)+' mm');
  const lateral=leftDist-T/2, longitudinal=frontDist-L/2;
  $('cgOffset').textContent='Längsversatz zur Fahrzeugmitte: '+fmt(Math.abs(longitudinal))+' mm '+(Math.abs(longitudinal)<.05?'(mittig)':longitudinal<0?'nach vorne':'nach hinten')+'. Seitlicher Versatz: '+fmt(Math.abs(lateral))+' mm '+(Math.abs(lateral)<.05?'(mittig)':lateral<0?'nach links':'nach rechts')+'.';
- const x=65+210*leftDist/T, y=79+180*frontDist/L;
+ const x=57+246*leftDist/T, y=86+208*frontDist/L;
  $('cgDot').setAttribute('cx',x);$('cgDot').setAttribute('cy',y);$('cgDot').setAttribute('opacity','1');$('cgDotHalo').setAttribute('cx',x);$('cgDotHalo').setAttribute('cy',y);$('cgDotHalo').setAttribute('opacity','.2');
  $('cgCross').setAttribute('d',`M${x-15} ${y} H${x+15} M${x} ${y-15} V${y+15}`);$('cgCross').setAttribute('opacity','1');
  const H=Number($('cgLift').value),r=Number($('cgRadius').value),ground=Number($('cgGround').value);
@@ -352,6 +446,6 @@ $('cgCalculate').addEventListener('click',()=>{
 });
 
 window.addEventListener('resize',()=>{if(currentTab==='history')renderHistory()});
-load();activeId=db.vehicles[0]?.id||null;cgLoad();renderGarage();if(activeId)selectVehicle(activeId);else{$('activeName').textContent='Noch kein Fahrzeug';renderResults()}renderHistory();
+initializeStorage();
 </script>
 </body></html>
